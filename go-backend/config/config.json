@@ -1,0 +1,5 @@
+{
+    "dbConnectionString": "postgres://postgres:postgres1@localhost:5432/complexTest",
+    "hostPort": 8080,
+    "info": ""
+}

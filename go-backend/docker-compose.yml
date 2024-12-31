@@ -1,0 +1,32 @@
+version: "3.8"
+
+services:
+  # Контейнер для Go-приложения
+  app:
+    build: .
+    ports:
+      - "8080:8080"
+    environment:
+      - DB_HOST=localhost
+      - DB_PORT=5432
+      - DB_USER=postgres
+      - DB_PASSWORD=postgres1
+      - DB_NAME=complexTest
+    depends_on:
+      - db
+
+  # Контейнер для PostgreSQL
+  db:
+    image: postgres:15
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres1
+      POSTGRES_DB: complexTest
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+
+# Для сохранения данных базы данных при перезапуске контейнеров
+volumes:
+  pgdata:
